@@ -10,5 +10,39 @@ def reconstruct_trip(tickets, length):
     YOUR CODE HERE
     """
     # Your code here
+    ticket_dict = {}
+    route_list = []
 
-    return route
+    for t in tickets:
+        ticket_dict[t.source] = t.destination
+        # print(t.source)
+        # print(t.destination)
+
+    current_ticket = ticket_dict['NONE']
+    # print('CUR', current_ticket)
+
+    while current_ticket != 'NONE':
+        route_list.append(current_ticket)
+        current_ticket = ticket_dict[current_ticket]
+        # print('new cur ticket', current_ticket)
+    
+    route_list.append(current_ticket)
+    # print('first', route_list)
+
+    return route_list
+
+ticket_1 = Ticket("PIT", "ORD")
+ticket_2 = Ticket("XNA", "SAP")
+ticket_3 = Ticket("SFO", "BHM")
+ticket_4 = Ticket("FLG", "XNA")
+ticket_5 = Ticket("NONE", "LAX")
+ticket_6 = Ticket("LAX", "SFO")
+ticket_7 = Ticket("SAP", "SLC")
+ticket_8 = Ticket("ORD", "NONE")
+ticket_9 = Ticket("SLC", "PIT")
+ticket_10 = Ticket("BHM", "FLG")
+
+tickets = [ticket_1, ticket_2, ticket_3, ticket_4, ticket_5,
+           ticket_6, ticket_7, ticket_8, ticket_9, ticket_10]
+
+print(reconstruct_trip(tickets, 10))
